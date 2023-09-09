@@ -1,6 +1,5 @@
 require('dotenv').config()
 const model = require('../model/users')
-const bcrypt = require('bcrypt')
 const { requestResponse } = require('../utils/index')
 
 let response
@@ -12,8 +11,7 @@ const login = async ({ EMAIL, PASSWORD }) => {
         response.message = 'EMAIL TIDAK TERDAFTAR'
         return response
     }
-    const compPasword = await bcrypt.compare(PASSWORD, email.PASSWORD)
-    if (!compPasword) {
+    if (PASSWORD !== email.PASSWORD) {
         response = { ...requestResponse.unauthorized }
         response.message = 'PASSWORD ANDA SALAH'
         return response
