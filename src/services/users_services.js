@@ -1,6 +1,5 @@
 const model = require('../model/users')
 const { requestResponse } = require('../utils/index')
-const bcrypt = require('bcrypt')
 
 let response
 
@@ -18,24 +17,19 @@ const create = async (data) => {
         return response
     }
 
-    const password = data.PASSWORD
-    const salt = 12
-    const hashPassword = await bcrypt.hash(password, salt)
-    data.PASSWORD = hashPassword
-
     await model.create(data)
     return { ...requestResponse.success, data: model }
 }
 
-const getAll = async(attributes) => {
+const getAll = async (attributes) => {
     return await model.find({}, attributes, { _id: false }, { lean: false },)
 }
 
-const getById = async(attributes, condition) => {
+const getById = async (attributes, condition) => {
     return model.findOne(condition, attributes)
 }
 
-const updateOne = async(condition, body) => {
+const updateOne = async (condition, body) => {
     return model.updateOne(condition, body)
 }
 
