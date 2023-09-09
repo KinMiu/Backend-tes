@@ -16,6 +16,11 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.static('statics'))
+router.use('/', (req, res) => {
+    res.json({
+        msg: 'Welcome to API'
+    });
+})
 app.use(router)
 app.use((req, res) => {
     const response = requestResponse.not_found

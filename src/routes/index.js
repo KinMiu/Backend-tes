@@ -9,12 +9,6 @@ const setAlat = require("./setAlat");
 const setTanam = require("./setTanam");
 const tanaman = require("./tanaman");
 
-router.use('/', (req, res) => {
-    res.json({
-        msg: 'Welcome to API'
-    });
-})
-
 router.post("/user/login", auth.login);
 
 router.use("/kategori", kategori);
