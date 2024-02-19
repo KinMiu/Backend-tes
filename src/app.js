@@ -7,7 +7,11 @@ const router = require('./routes')
 const path = require('path')
 const { requestResponse } = require('./utils/index')
 
-mongo.createConnection().then((_) => Logger.info('BERHASIL TERHUBUNG DATABASE MONGODB'))
+mongo.createConnection().then((_) => {
+    logger.info(`SUCCESS CONNECTING TO DATABASE MONGODB`)
+}).catch((err) => {
+    console.error(err)
+})
 
 const app = express()
 
