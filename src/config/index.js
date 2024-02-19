@@ -9,24 +9,29 @@ const mongoOptions = {
     autoIndex: false
 }
 
-const allowedOrigins = [/.*./]
+// const allowedOrigins = ['https://photo-frontend.vercel.app']
+const allowedOrigins = ['http://localhost:3000']
 
 if (process.env.NODE_DEV === 'development') {
-    allowedOrigins.push(/.*./)
+    allowedOrigins.push('*')
 }
 
 const cors = (req, res, next) => {
     const requestHost = req.get('origin') || req.get('host')
-    if(allowedOrigins.some((origin) => requestHost.match(origin))) {
+
+    if (allowedOrigins.some((origin) => requestHost.match(origin))) {
         res.header('Access-Control-Allow-Origin', req.get('origin'))
+        res.header('Access-Control-Allow-Credentials', 'true')
     }
+
     res.header('Access-Control-Allow-Headers', "Origin, X-Requested-With, Content-Type, Accept, Authorization")
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE')
+
     next()
 }
 
 module.exports = {
-    mongoURL, 
-    mongoOptions, 
+    mongoURL,
+    mongoOptions,
     cors
 }
