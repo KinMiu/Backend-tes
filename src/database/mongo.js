@@ -2,6 +2,8 @@ require('dotenv').config()
 const { mongoURL, mongoOptions } = require('../config')
 const mongoose = require('mongoose')
 
+console.log(mongoURL, mongoOptions)
+
 if (process.env.NODE_ENV !== 'production') {
     mongoose.set('debug', true)
 }
