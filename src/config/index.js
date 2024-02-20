@@ -10,7 +10,7 @@ const mongoOptions = {
 }
 
 // const allowedOrigins = ['https://photo-frontend.vercel.app']
-const allowedOrigins = ['https://smart-agriculture-indol.vercel.app/#/']
+const allowedOrigins = ['https://smart-agriculture-indol.vercel.app/#/', 'https://worker-gh.vercel.app/']
 // const allowedOrigins = ['http://localhost:3000']
 
 if (process.env.NODE_DEV === 'development') {
